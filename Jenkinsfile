@@ -15,9 +15,10 @@ pipeline {
         }
         stage('Cobertura') {
             steps {
-                jacoco execPattern: 'target/jacoco.exec',
-                       classPattern: 'target/classes',
-                       sourcePattern: 'src/main/java'
+                recordCoverage(
+                    tools: [[parser: 'JACOCO']],
+                    sourceCodeRetention: 'EVERY_BUILD'
+                )
             }
         }
     }
