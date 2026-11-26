@@ -1,0 +1,15 @@
+name: conversor-build
+
+services:
+  build:
+    image: maven:3.9-eclipse-temurin-21
+    container_name: conversor-build
+    working_dir: /app
+    volumes:
+      - .:/app
+      - maven-cache:/root/.m2
+    command: mvn -B clean compile
+
+volumes:
+  maven-cache:
+    name: jenkins-maven-cache
